@@ -1,7 +1,21 @@
-- name: Bandit Check
-  # You may pin to the exact commit or the version.
-  # uses: jpetrucciani/bandit-check@4b67302e8e863966b82376489a91b34ba1a28ddf
-  uses: jpetrucciani/bandit-check@1.6.2
-  with:
-    # File or directory to run bandit on
-    path: # optional, default is .
+name: Python package
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [2.7, 3.5, 3.6, 3.7, 3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Bandit Check
+      # You may pin to the exact commit or the version.
+      # uses: jpetrucciani/bandit-check@4b67302e8e863966b82376489a91b34ba1a28ddf
+      uses: jpetrucciani/bandit-check@1.6.2
+      with:
+          # File or directory to run bandit on
+          path: # optional, default is .
